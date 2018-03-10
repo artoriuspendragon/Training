@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.userinfoMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.userinfo">
+    <id column="userinfo_UserID" jdbcType="INTEGER" property="userID" />
+    <result column="userinfo_UserGuid" jdbcType="VARCHAR" property="userGuid" />
+    <result column="userinfo_LoginID" jdbcType="VARCHAR" property="loginID" />
+    <result column="userinfo_LoginPwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="userinfo_Name" jdbcType="VARCHAR" property="name" />
+    <result column="userinfo_RegistTime" jdbcType="VARCHAR" property="registTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userinfo.UserID as userinfo_UserID, userinfo.UserGuid as userinfo_UserGuid, userinfo.LoginID as userinfo_LoginID, 
+    userinfo.LoginPwd as userinfo_LoginPwd, userinfo.Name as userinfo_Name, userinfo.RegistTime as userinfo_RegistTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo userinfo
+    where userinfo.UserID = #{userID,jdbcType=INTEGER}
+  </select>
+    <select id="selectByLoginID" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo userinfo
+    where userinfo.loginID = #{loginID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where UserID = #{userID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.userinfo">
+    insert into userinfo (UserID, UserGuid, LoginID, 
+      LoginPwd, Name, RegistTime
+      )
+    values (#{userID,jdbcType=INTEGER}, #{userGuid,jdbcType=VARCHAR}, #{loginID,jdbcType=VARCHAR}, 
+      #{loginPwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{registTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.userinfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        UserID,
+      </if>
+      <if test="userGuid != null">
+        UserGuid,
+      </if>
+      <if test="loginID != null">
+        LoginID,
+      </if>
+      <if test="loginPwd != null">
+        LoginPwd,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="registTime != null">
+        RegistTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        #{userID,jdbcType=INTEGER},
+      </if>
+      <if test="userGuid != null">
+        #{userGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginID != null">
+        #{loginID,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null">
+        #{registTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.TrainingSystem.Dto.userinfo">
+    update userinfo
+    <set>
+      <if test="userGuid != null">
+        UserGuid = #{userGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginID != null">
+        LoginID = #{loginID,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        LoginPwd = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null">
+        RegistTime = #{registTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UserID = #{userID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.TrainingSystem.Dto.userinfo">
+    update userinfo
+    set UserGuid = #{userGuid,jdbcType=VARCHAR},
+      LoginID = #{loginID,jdbcType=VARCHAR},
+      LoginPwd = #{loginPwd,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      RegistTime = #{registTime,jdbcType=VARCHAR}
+    where UserID = #{userID,jdbcType=INTEGER}
+  </update>
+</mapper>

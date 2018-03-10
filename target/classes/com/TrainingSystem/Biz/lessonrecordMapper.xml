@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.lessonrecordMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.lessonrecord">
+    <id column="lessonrecord_lessonrecordID" jdbcType="INTEGER" property="lessonrecordID" />
+    <result column="lessonrecord_ClassID" jdbcType="INTEGER" property="classID" />
+    <result column="lessonrecord_Lessondate" jdbcType="VARCHAR" property="lessondate" />
+    <result column="lessonrecord_LessonContent" jdbcType="VARCHAR" property="lessonContent" />
+    <result column="lessonrecord_Time" jdbcType="VARCHAR" property="time" />
+    <result column="lessonrecord_LessonPeriod" jdbcType="VARCHAR" property="lessonPeriod" />
+    <result column="lessonrecord_TeacherSign" jdbcType="VARCHAR" property="teacherSign" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lessonrecord.lessonrecordID as lessonrecord_lessonrecordID, lessonrecord.ClassID as lessonrecord_ClassID, 
+    lessonrecord.Lessondate as lessonrecord_Lessondate, lessonrecord.LessonContent as lessonrecord_LessonContent, 
+    lessonrecord.Time as lessonrecord_Time, lessonrecord.LessonPeriod as lessonrecord_LessonPeriod, 
+    lessonrecord.TeacherSign as lessonrecord_TeacherSign
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lessonrecord lessonrecord
+    where lessonrecord.lessonrecordID = #{lessonrecordID,jdbcType=INTEGER}
+  </select>  
+  <select id="selectByClassID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lessonrecord lessonrecord
+    where lessonrecord.classID = #{lessonrecordID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lessonrecord
+    where lessonrecordID = #{lessonrecordID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.lessonrecord">
+    insert into lessonrecord (lessonrecordID, ClassId, Lessondate, 
+      LessonContent, Time, LessonPeriod, 
+      TeacherSign)
+    values (#{lessonrecordID,jdbcType=INTEGER}, #{classID,jdbcType=INTEGER}, #{lessondate,jdbcType=VARCHAR}, 
+      #{lessonContent,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{lessonPeriod,jdbcType=VARCHAR}, 
+      #{teacherSign,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.lessonrecord">
+    insert into lessonrecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lessonrecordID != null">
+        lessonrecordID,
+      </if>
+      <if test="classID != null">
+        ClassId,
+      </if>
+      <if test="lessondate != null">
+        Lessondate,
+      </if>
+      <if test="lessonContent != null">
+        LessonContent,
+      </if>
+      <if test="time != null">
+        Time,
+      </if>
+      <if test="lessonPeriod != null">
+        LessonPeriod,
+      </if>
+      <if test="teacherSign != null">
+        TeacherSign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lessonrecordID != null">
+        #{lessonrecordID,jdbcType=INTEGER},
+      </if>
+      <if test="classID != null">
+        #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="lessondate != null">
+        #{lessondate,jdbcType=VARCHAR},
+      </if>
+      <if test="lessonContent != null">
+        #{lessonContent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="lessonPeriod != null">
+        #{lessonPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSign != null">
+        #{teacherSign,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.TrainingSystem.Dto.lessonrecord">
+    update lessonrecord
+    <set>
+      <if test="classID != null">
+        ClassId = #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="lessondate != null">
+        Lessondate = #{lessondate,jdbcType=VARCHAR},
+      </if>
+      <if test="lessonContent != null">
+        LessonContent = #{lessonContent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        Time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="lessonPeriod != null">
+        LessonPeriod = #{lessonPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSign != null">
+        TeacherSign = #{teacherSign,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lessonrecordID = #{lessonrecordID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.TrainingSystem.Dto.lessonrecord">
+    update lessonrecord
+    set ClassId = #{classID,jdbcType=INTEGER},
+      Lessondate = #{lessondate,jdbcType=VARCHAR},
+      LessonContent = #{lessonContent,jdbcType=VARCHAR},
+      Time = #{time,jdbcType=VARCHAR},
+      LessonPeriod = #{lessonPeriod,jdbcType=VARCHAR},
+      TeacherSign = #{teacherSign,jdbcType=VARCHAR}
+    where lessonrecordID = #{lessonrecordID,jdbcType=INTEGER}
+  </update>
+</mapper>

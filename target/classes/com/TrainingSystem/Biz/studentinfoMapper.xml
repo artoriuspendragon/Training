@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.studentinfoMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.studentinfo">
+    <id column="studentinfo_StudentID" jdbcType="INTEGER" property="studentID" />
+    <result column="studentinfo_StudentGuid" jdbcType="VARCHAR" property="studentGuid" />
+    <result column="studentinfo_Sex" jdbcType="VARCHAR" property="sex" />
+    <result column="studentinfo_Age" jdbcType="INTEGER" property="age" />
+    <result column="studentinfo_Identity" jdbcType="VARCHAR" property="identity" />
+    <result column="studentinfo_Education" jdbcType="VARCHAR" property="education" />
+    <result column="studentinfo_Unit" jdbcType="VARCHAR" property="unit" />
+    <result column="studentinfo_Association" jdbcType="VARCHAR" property="association" />
+    <result column="studentinfo_Certification" jdbcType="VARCHAR" property="certification" />
+    <result column="studentinfo_ExamType" jdbcType="VARCHAR" property="examType" />
+    <result column="studentinfo_ExamDegree" jdbcType="VARCHAR" property="examDegree" />
+    <result column="studentinfo_Remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="studentinfo_name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    studentinfo.StudentID as studentinfo_StudentID, studentinfo.StudentGuid as studentinfo_StudentGuid, 
+    studentinfo.Sex as studentinfo_Sex, studentinfo.Age as studentinfo_Age, studentinfo.Identity as studentinfo_Identity, 
+    studentinfo.Education as studentinfo_Education, studentinfo.Unit as studentinfo_Unit, 
+    studentinfo.Association as studentinfo_Association, studentinfo.Certification as studentinfo_Certification, 
+    studentinfo.ExamType as studentinfo_ExamType, studentinfo.ExamDegree as studentinfo_ExamDegree, 
+    studentinfo.Remarks as studentinfo_Remarks, studentinfo.name as studentinfo_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from studentinfo studentinfo
+    where studentinfo.StudentID = #{studentID,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectAll"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from studentinfo studentinfo
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from studentinfo
+    where StudentID = #{studentID,jdbcType=INTEGER}
+  </delete>
+   <delete id="deleteByPrimaryKeys">
+    delete from studentinfo
+    where StudentID in <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}       
+        </foreach>   
+  </delete>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.studentinfo">
+    insert into studentinfo (StudentID, StudentGuid, Sex, 
+      Age, Identity, Education, 
+      Unit, Association, Certification, 
+      ExamType, ExamDegree, Remarks, 
+      name)
+    values (#{studentID,jdbcType=INTEGER}, #{studentGuid,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{identity,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{association,jdbcType=VARCHAR}, #{certification,jdbcType=VARCHAR}, 
+      #{examType,jdbcType=VARCHAR}, #{examDegree,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.studentinfo">
+    insert into studentinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentID != null">
+        StudentID,
+      </if>
+      <if test="studentGuid != null">
+        StudentGuid,
+      </if>
+      <if test="sex != null">
+        Sex,
+      </if>
+      <if test="age != null">
+        Age,
+      </if>
+      <if test="identity != null">
+        Identity,
+      </if>
+      <if test="education != null">
+        Education,
+      </if>
+      <if test="unit != null">
+        Unit,
+      </if>
+      <if test="association != null">
+        Association,
+      </if>
+      <if test="certification != null">
+        Certification,
+      </if>
+      <if test="examType != null">
+        ExamType,
+      </if>
+      <if test="examDegree != null">
+        ExamDegree,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentID != null">
+        #{studentID,jdbcType=INTEGER},
+      </if>
+      <if test="studentGuid != null">
+        #{studentGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="association != null">
+        #{association,jdbcType=VARCHAR},
+      </if>
+      <if test="certification != null">
+        #{certification,jdbcType=VARCHAR},
+      </if>
+      <if test="examType != null">
+        #{examType,jdbcType=VARCHAR},
+      </if>
+      <if test="examDegree != null">
+        #{examDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.TrainingSystem.Dto.studentinfo">
+    update studentinfo
+    <set>
+      <if test="studentGuid != null">
+        StudentGuid = #{studentGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        Age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null">
+        Identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        Education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="association != null">
+        Association = #{association,jdbcType=VARCHAR},
+      </if>
+      <if test="certification != null">
+        Certification = #{certification,jdbcType=VARCHAR},
+      </if>
+      <if test="examType != null">
+        ExamType = #{examType,jdbcType=VARCHAR},
+      </if>
+      <if test="examDegree != null">
+        ExamDegree = #{examDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where StudentID = #{studentID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.TrainingSystem.Dto.studentinfo">
+    update studentinfo
+    set StudentGuid = #{studentGuid,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Age = #{age,jdbcType=INTEGER},
+      Identity = #{identity,jdbcType=VARCHAR},
+      Education = #{education,jdbcType=VARCHAR},
+      Unit = #{unit,jdbcType=VARCHAR},
+      Association = #{association,jdbcType=VARCHAR},
+      Certification = #{certification,jdbcType=VARCHAR},
+      ExamType = #{examType,jdbcType=VARCHAR},
+      ExamDegree = #{examDegree,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR}
+    where StudentID = #{studentID,jdbcType=INTEGER}
+  </update>
+</mapper>

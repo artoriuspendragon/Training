@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.trainingexamplanMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.trainingexamplan">
+    <result column="trainingexamplan_ClassID" jdbcType="INTEGER" property="classID" />
+    <result column="trainingexamplan_MemberAmount" jdbcType="INTEGER" property="memberAmount" />
+    <result column="trainingexamplan_Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="trainingexamplan_Telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="trainingexamplan_Approval" jdbcType="VARCHAR" property="approval" />
+    <result column="trainingexamplan_Unit" jdbcType="VARCHAR" property="unit" />
+  </resultMap>
+   <sql id="Base_Column_List">
+   trainingexamplan.ClassID as trainingexamplan_ClassID, trainingexamplan.MemberAmount as trainingexamplan_MemberAmount, 
+    trainingexamplan.Contact as trainingexamplan_Contact,trainingexamplan.Telephone as trainingexamplan_Telephone, 
+    trainingexamplan.Approval as trainingexamplan_Approval,  trainingexamplan.Unit as  trainingexamplan_Unit
+  </sql>
+  <select id="selectByclassID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+     select
+     <include refid="Base_Column_List"/>
+     from   trainingexamplan trainingexamplan
+     where ClassID=#{classID,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.trainingexamplan">
+    insert into trainingexamplan (ClassID, MemberAmount, Contact, 
+      Telephone, Approval, Unit
+      )
+    values (#{classID,jdbcType=INTEGER}, #{memberAmount,jdbcType=INTEGER}, #{contact,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{approval,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.trainingexamplan">
+    insert into trainingexamplan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        ClassID,
+      </if>
+      <if test="memberAmount != null">
+        MemberAmount,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="approval != null">
+        Approval,
+      </if>
+      <if test="unit != null">
+        Unit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="memberAmount != null">
+        #{memberAmount,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="approval != null">
+        #{approval,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <update id="updateByClassIDselective" parameterType="com.TrainingSystem.Dto.trainingexamplan">
+    update trainingexamplan
+    <set>
+      <if test="memberAmount != null">
+        MemberAmount = #{memberAmount,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null">
+        Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        Telephone = #{telephone,jdbcType=INTEGER},
+      </if>
+      <if test="approval != null">
+        Approval = #{approval,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ClassID = #{classID,jdbcType=INTEGER}
+  </update>
+</mapper>

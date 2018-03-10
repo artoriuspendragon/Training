@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.trainingexamplan_examplanMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.trainingexamplan_examplan">
+    <result column="trainingexamplan_examplan_ClassID" jdbcType="INTEGER" property="classID" />
+    <result column="trainingexamplan_examplan_ExamItem" jdbcType="VARCHAR" property="examItem" />
+    <result column="trainingexamplan_examplan_Examdate" jdbcType="TIMESTAMP" property="examdate" />
+    <result column="trainingexamplan_examplan_Teacher" jdbcType="VARCHAR" property="teacher" />
+    <result column="trainingexamplan_examplan_Remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+    <sql id="Base_Column_List">
+    trainingexamplan_examplan.ClassID as trainingexamplan_examplan_ClassID, trainingexamplan_examplan.ExamItem as trainingexamplan_examplan_ExamItem, 
+    trainingexamplan_examplan.Examdate as trainingexamplan_examplan_Examdate,
+   trainingexamplan_examplan.Teacher as trainingexamplan_examplan_Teacher, trainingexamplan_examplan.Remarks as trainingexamplan_examplan_Remarks
+  </sql>
+  <select id="selectByclassID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+     select
+     <include refid="Base_Column_List"/>
+     from trainingexamplan_examplan trainingexamplan_examplan
+     where trainingexamplan_examplan.classID=#{classID,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.trainingexamplan_examplan">
+    insert into trainingexamplan_examplan (ClassID, ExamItem, Examdate, 
+      Teacher, Remarks)
+    values (#{classID,jdbcType=INTEGER}, #{examItem,jdbcType=VARCHAR}, #{examdate,jdbcType=TIMESTAMP}, 
+      #{teacher,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.trainingexamplan_examplan">
+    insert into trainingexamplan_examplan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        ClassID,
+      </if>
+      <if test="examItem != null">
+        ExamItem,
+      </if>
+      <if test="examdate != null">
+        Examdate,
+      </if>
+      <if test="teacher != null">
+        Teacher,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="examItem != null">
+        #{examItem,jdbcType=VARCHAR},
+      </if>
+      <if test="examdate != null">
+        #{examdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teacher != null">
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

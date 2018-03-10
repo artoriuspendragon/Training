@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.trainingclassMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.trainingclass">
+    <id column="trainingclass_ClassID" jdbcType="INTEGER" property="classID" />
+    <result column="trainingclass_ClassGuid" jdbcType="VARCHAR" property="classGuid" />
+    <result column="trainingclass_StudyContent" jdbcType="VARCHAR" property="studyContent" />
+    <result column="trainingclass_MemberAmount" jdbcType="INTEGER" property="memberAmount" />
+    <result column="trainingclass_TrainingBook" jdbcType="VARCHAR" property="trainingBook" />
+    <result column="trainingclass_TrainingForm" jdbcType="VARCHAR" property="trainingForm" />
+    <result column="trainingclass_TrainingPeriod" jdbcType="VARCHAR" property="trainingPeriod" />
+    <result column="trainingclass_TrainingTime" jdbcType="VARCHAR" property="trainingTime" />
+    <result column="trainingclass_TrainingLocation" jdbcType="VARCHAR" property="trainingLocation" />
+    <result column="trainingclass_TrainingClass" jdbcType="VARCHAR" property="trainingClass" />
+    <result column="trainingclass_TeacherName" jdbcType="VARCHAR" property="teacherName" />
+    <result column="trainingclass_TeacherUnit" jdbcType="VARCHAR" property="teacherUnit" />
+    <result column="trainingclass_TrainingGoal" jdbcType="VARCHAR" property="trainingGoal" />
+    <result column="trainingclass_ClassName" jdbcType="VARCHAR" property="className" />
+  </resultMap>
+    <resultMap id="ClassNameResultMap" type="HashMap">
+    <id column="trainingclass_ClassID"  property="classID" />
+    <result column="trainingclass_ClassName" property="className" />
+    <result column="trainingexamplan_Approval" property="Approval"/>
+  </resultMap>
+    <sql id="Base_Column_List">
+    trainingclass.ClassID as trainingclass_ClassID, trainingclass.ClassGuid as trainingclass_ClassGuid, 
+    trainingclass.StudyContent as trainingclass_StudyContent, trainingclass.MemberAmount as trainingclass_MemberAmount, 
+    trainingclass.TrainingBook as trainingclass_TrainingBook, trainingclass.TrainingForm as trainingclass_TrainingForm, 
+    trainingclass.TrainingPeriod as trainingclass_TrainingPeriod, trainingclass.TrainingTime as trainingclass_TrainingTime, 
+    trainingclass.TrainingLocation as trainingclass_TrainingLocation, trainingclass.TrainingClass as trainingclass_TrainingClass, 
+    trainingclass.TeacherName as trainingclass_TeacherName, trainingclass.TeacherUnit as trainingclass_TeacherUnit, 
+    trainingclass.TrainingGoal as trainingclass_TrainingGoal, trainingclass.ClassName as trainingclass_ClassName
+  </sql>
+    <select id="selectclassesnames"  resultMap="ClassNameResultMap">
+    select 
+    trainingclass.classID as trainingclass_ClassID,
+    trainingclass.className as  trainingclass_ClassName,
+    trainingexamplan.approval  as trainingexamplan_Approval
+    from trainingclass left join trainingexamplan  
+    on trainingclass.ClassID=trainingexamplan.ClassID
+  </select>
+  <select id="selectclasses"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"/>
+    from trainingclass  trainingclass
+  </select>
+  <select id="selectexists" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+   select
+   count(1)
+   from trainingclass trainingclass
+   where trainingclass.ClassID=#{classID,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trainingclass trainingclass
+    where trainingclass.ClassID = #{classID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trainingclass
+    where ClassID = #{classID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.trainingclass">
+    insert into trainingclass (ClassID, ClassGuid, StudyContent, 
+      MemberAmount, TrainingBook, TrainingForm, 
+      TrainingPeriod, TrainingTime, TrainingLocation, 
+      TrainingClass, TeacherName, TeacherUnit, 
+      TrainingGoal, ClassName)
+    values (#{classID,jdbcType=INTEGER}, #{classGuid,jdbcType=VARCHAR}, #{studyContent,jdbcType=VARCHAR}, 
+      #{memberAmount,jdbcType=INTEGER}, #{trainingBook,jdbcType=VARCHAR}, #{trainingForm,jdbcType=VARCHAR}, 
+      #{trainingPeriod,jdbcType=VARCHAR}, #{trainingTime,jdbcType=VARCHAR}, #{trainingLocation,jdbcType=VARCHAR}, 
+      #{trainingClass,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, #{teacherUnit,jdbcType=VARCHAR}, 
+      #{trainingGoal,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.trainingclass">
+    insert into trainingclass
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        ClassID,
+      </if>
+      <if test="classGuid != null">
+        ClassGuid,
+      </if>
+      <if test="studyContent != null">
+        StudyContent,
+      </if>
+      <if test="memberAmount != null">
+        MemberAmount,
+      </if>
+      <if test="trainingBook != null">
+        TrainingBook,
+      </if>
+      <if test="trainingForm != null">
+        TrainingForm,
+      </if>
+      <if test="trainingPeriod != null">
+        TrainingPeriod,
+      </if>
+      <if test="trainingTime != null">
+        TrainingTime,
+      </if>
+      <if test="trainingLocation != null">
+        TrainingLocation,
+      </if>
+      <if test="trainingClass != null">
+        TrainingClass,
+      </if>
+      <if test="teacherName != null">
+        TeacherName,
+      </if>
+      <if test="teacherUnit != null">
+        TeacherUnit,
+      </if>
+      <if test="trainingGoal != null">
+        TrainingGoal,
+      </if>
+      <if test="className != null">
+        ClassName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="classGuid != null">
+        #{classGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="studyContent != null">
+        #{studyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAmount != null">
+        #{memberAmount,jdbcType=INTEGER},
+      </if>
+      <if test="trainingBook != null">
+        #{trainingBook,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingForm != null">
+        #{trainingForm,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingPeriod != null">
+        #{trainingPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingTime != null">
+        #{trainingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingLocation != null">
+        #{trainingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingClass != null">
+        #{trainingClass,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherUnit != null">
+        #{teacherUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingGoal != null">
+        #{trainingGoal,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.TrainingSystem.Dto.trainingclass">
+    update trainingclass
+    <set>
+      <if test="classGuid != null">
+        ClassGuid = #{classGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="studyContent != null">
+        StudyContent = #{studyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAmount != null">
+        MemberAmount = #{memberAmount,jdbcType=INTEGER},
+      </if>
+      <if test="trainingBook != null">
+        TrainingBook = #{trainingBook,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingForm != null">
+        TrainingForm = #{trainingForm,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingPeriod != null">
+        TrainingPeriod = #{trainingPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingTime != null">
+        TrainingTime = #{trainingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingLocation != null">
+        TrainingLocation = #{trainingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingClass != null">
+        TrainingClass = #{trainingClass,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        TeacherName = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherUnit != null">
+        TeacherUnit = #{teacherUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingGoal != null">
+        TrainingGoal = #{trainingGoal,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        ClassName = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ClassID = #{classID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.TrainingSystem.Dto.trainingclass">
+    update trainingclass
+    set ClassGuid = #{classGuid,jdbcType=VARCHAR},
+      StudyContent = #{studyContent,jdbcType=VARCHAR},
+      MemberAmount = #{memberAmount,jdbcType=INTEGER},
+      TrainingBook = #{trainingBook,jdbcType=VARCHAR},
+      TrainingForm = #{trainingForm,jdbcType=VARCHAR},
+      TrainingPeriod = #{trainingPeriod,jdbcType=VARCHAR},
+      TrainingTime = #{trainingTime,jdbcType=VARCHAR},
+      TrainingLocation = #{trainingLocation,jdbcType=VARCHAR},
+      TrainingClass = #{trainingClass,jdbcType=VARCHAR},
+      TeacherName = #{teacherName,jdbcType=VARCHAR},
+      TeacherUnit = #{teacherUnit,jdbcType=VARCHAR},
+      TrainingGoal = #{trainingGoal,jdbcType=VARCHAR},
+      ClassName = #{className,jdbcType=VARCHAR}
+    where ClassID = #{classID,jdbcType=INTEGER}
+  </update>
+</mapper>

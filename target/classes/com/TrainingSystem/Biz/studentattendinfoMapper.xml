@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.studentattendinfoMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.studentattendinfo">
+    <result column="studentattendinfo_StudentGuid" jdbcType="VARCHAR" property="studentGuid" />
+    <result column="studentattendinfo_AttendDate" jdbcType="TIMESTAMP" property="attendDate" />
+    <result column="studentattendinfo_AttendClassGuid" jdbcType="VARCHAR" property="attendClassGuid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.studentattendinfo">
+    insert into studentattendinfo (StudentGuid, AttendDate, AttendClassGuid
+      )
+    values (#{studentGuid,jdbcType=VARCHAR}, #{attendDate,jdbcType=TIMESTAMP}, #{attendClassGuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.studentattendinfo">
+    insert into studentattendinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentGuid != null">
+        StudentGuid,
+      </if>
+      <if test="attendDate != null">
+        AttendDate,
+      </if>
+      <if test="attendClassGuid != null">
+        AttendClassGuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentGuid != null">
+        #{studentGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="attendDate != null">
+        #{attendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendClassGuid != null">
+        #{attendClassGuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

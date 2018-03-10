@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.trainingexamplan_trainingplanMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.trainingexamplan_trainingplan">
+    <result column="trainingexamplan_trainingplan_ClassID" jdbcType="INTEGER" property="classID" />
+    <result column="trainingexamplan_trainingplan_TrainingContent" jdbcType="VARCHAR" property="trainingContent" />
+    <result column="trainingexamplan_trainingplan_StartTime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="trainingexamplan_trainingplan_EndTime" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="trainingexamplan_trainingplan_Remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="trainingexamplan_trainingplan_Teacher" jdbcType="VARCHAR" property="teacher" />
+  </resultMap>
+   <sql id="Base_Column_List">
+    trainingexamplan_trainingplan.ClassID as trainingexamplan_trainingplan_ClassID, 
+    trainingexamplan_trainingplan.TrainingContent as trainingexamplan_trainingplan_TrainingContent, 
+    trainingexamplan_trainingplan.StartTime as trainingexamplan_trainingplan_StartTime,
+  trainingexamplan_trainingplan.EndTime as trainingexamplan_trainingplan_EndTime, 
+  trainingexamplan_trainingplan.Remarks as trainingexamplan_trainingplan_Remarks,
+    trainingexamplan_trainingplan.Teacher  as trainingexamplan_trainingplan_Teacher
+  </sql>
+  <select id="selectByclassID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select
+   <include refid="Base_Column_List"></include>
+   from trainingexamplan_trainingplan trainingexamplan_trainingplan
+   where classID=#{classID,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.trainingexamplan_trainingplan">
+    insert into trainingexamplan_trainingplan (ClassID, TrainingContent, StartTime, 
+      EndTime, Remarks, Teacher
+      )
+    values (#{classID,jdbcType=INTEGER}, #{trainingContent,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{teacher,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.trainingexamplan_trainingplan">
+    insert into trainingexamplan_trainingplan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        ClassID,
+      </if>
+      <if test="trainingContent != null">
+        TrainingContent,
+      </if>
+      <if test="startTime != null">
+        StartTime,
+      </if>
+      <if test="endTime != null">
+        EndTime,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+      <if test="teacher != null">
+        Teacher,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classID != null">
+        #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="trainingContent != null">
+        #{trainingContent,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null">
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

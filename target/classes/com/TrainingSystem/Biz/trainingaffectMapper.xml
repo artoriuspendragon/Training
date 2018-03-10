@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.trainingaffectMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.trainingaffect">
+    <id column="trainingaffect_TrainingAffectID" jdbcType="INTEGER" property="trainingAffectID" />
+    <result column="trainingaffect_classID" jdbcType="INTEGER" property="classID" />
+    <result column="trainingaffect_TrainingDate" jdbcType="TIMESTAMP" property="trainingDate" />
+    <result column="trainingaffect_GraduateDate" jdbcType="TIMESTAMP" property="graduateDate" />
+    <result column="trainingaffect_GraduateAmount" jdbcType="INTEGER" property="graduateAmount" />
+    <result column="trainingaffect_TrainingState" jdbcType="VARCHAR" property="trainingState" />
+    <result column="trainingaffect_AffectComment" jdbcType="VARCHAR" property="affectComment" />
+    <result column="trainingaffect_charge" jdbcType="VARCHAR" property="charge" />
+    <result column="trainingaffect_Writetime" jdbcType="TIMESTAMP" property="writetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trainingaffect.TrainingAffectID as trainingaffect_TrainingAffectID, trainingaffect.classID as trainingaffect_classID, 
+    trainingaffect.TrainingDate as trainingaffect_TrainingDate, trainingaffect.GraduateDate as trainingaffect_GraduateDate, 
+    trainingaffect.GraduateAmount as trainingaffect_GraduateAmount, trainingaffect.TrainingState as trainingaffect_TrainingState, 
+    trainingaffect.AffectComment as trainingaffect_AffectComment, trainingaffect.charge as trainingaffect_charge, 
+    trainingaffect.Writetime as trainingaffect_Writetime
+  </sql>
+      <resultMap id="ClassNameResultMap" type="HashMap">
+    <id column="trainingclass_ClassID"  property="classID" />
+    <result column="trainingclass_ClassName" property="className" />
+  </resultMap>
+    <select id="selectclassesnames"  resultMap="ClassNameResultMap">
+        select 
+    trainingclass.classID as trainingclass_ClassID,
+    trainingclass.className as  trainingclass_ClassName
+    from trainingclass right join trainingaffect  
+    on trainingclass.ClassID=trainingaffect.ClassID
+  </select>
+  <select id="selectclassesnamesnotfinished"  resultMap="ClassNameResultMap">
+        select 
+    trainingclass.classID as trainingclass_ClassID,
+    trainingclass.className as  trainingclass_ClassName
+    from trainingclass,trainingexamplan,trainingaffect  
+    where trainingclass.classID=trainingexamplan.classID and trainingclass.classID!=trainingaffect.classID and trainingexamplan.Approval='yes'
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trainingaffect trainingaffect
+    where trainingaffect.TrainingAffectID = #{trainingAffectID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trainingaffect
+    where TrainingAffectID = #{trainingAffectID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.trainingaffect">
+    insert into trainingaffect (TrainingAffectID, classID, TrainingDate, 
+      GraduateDate, GraduateAmount, TrainingState, 
+      AffectComment, charge, Writetime
+      )
+    values (#{trainingAffectID,jdbcType=INTEGER}, #{classID,jdbcType=INTEGER}, #{trainingDate,jdbcType=TIMESTAMP}, 
+      #{graduateDate,jdbcType=TIMESTAMP}, #{graduateAmount,jdbcType=INTEGER}, #{trainingState,jdbcType=VARCHAR}, 
+      #{affectComment,jdbcType=VARCHAR}, #{charge,jdbcType=VARCHAR}, #{writetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.trainingaffect">
+    insert into trainingaffect
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="trainingAffectID != null">
+        TrainingAffectID,
+      </if>
+      <if test="classID != null">
+        classID,
+      </if>
+      <if test="trainingDate != null">
+        TrainingDate,
+      </if>
+      <if test="graduateDate != null">
+        GraduateDate,
+      </if>
+      <if test="graduateAmount != null">
+        GraduateAmount,
+      </if>
+      <if test="trainingState != null">
+        TrainingState,
+      </if>
+      <if test="affectComment != null">
+        AffectComment,
+      </if>
+      <if test="charge != null">
+        charge,
+      </if>
+      <if test="writetime != null">
+        Writetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="trainingAffectID != null">
+        #{trainingAffectID,jdbcType=INTEGER},
+      </if>
+      <if test="classID != null">
+        #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="trainingDate != null">
+        #{trainingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduateDate != null">
+        #{graduateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduateAmount != null">
+        #{graduateAmount,jdbcType=INTEGER},
+      </if>
+      <if test="trainingState != null">
+        #{trainingState,jdbcType=VARCHAR},
+      </if>
+      <if test="affectComment != null">
+        #{affectComment,jdbcType=VARCHAR},
+      </if>
+      <if test="charge != null">
+        #{charge,jdbcType=VARCHAR},
+      </if>
+      <if test="writetime != null">
+        #{writetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.TrainingSystem.Dto.trainingaffect">
+    update trainingaffect
+    <set>
+      <if test="classID != null">
+        classID = #{classID,jdbcType=INTEGER},
+      </if>
+      <if test="trainingDate != null">
+        TrainingDate = #{trainingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduateDate != null">
+        GraduateDate = #{graduateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduateAmount != null">
+        GraduateAmount = #{graduateAmount,jdbcType=INTEGER},
+      </if>
+      <if test="trainingState != null">
+        TrainingState = #{trainingState,jdbcType=VARCHAR},
+      </if>
+      <if test="affectComment != null">
+        AffectComment = #{affectComment,jdbcType=VARCHAR},
+      </if>
+      <if test="charge != null">
+        charge = #{charge,jdbcType=VARCHAR},
+      </if>
+      <if test="writetime != null">
+        Writetime = #{writetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where TrainingAffectID = #{trainingAffectID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.TrainingSystem.Dto.trainingaffect">
+    update trainingaffect
+    set classID = #{classID,jdbcType=INTEGER},
+      TrainingDate = #{trainingDate,jdbcType=TIMESTAMP},
+      GraduateDate = #{graduateDate,jdbcType=TIMESTAMP},
+      GraduateAmount = #{graduateAmount,jdbcType=INTEGER},
+      TrainingState = #{trainingState,jdbcType=VARCHAR},
+      AffectComment = #{affectComment,jdbcType=VARCHAR},
+      charge = #{charge,jdbcType=VARCHAR},
+      Writetime = #{writetime,jdbcType=TIMESTAMP}
+    where TrainingAffectID = #{trainingAffectID,jdbcType=INTEGER}
+  </update>
+</mapper>

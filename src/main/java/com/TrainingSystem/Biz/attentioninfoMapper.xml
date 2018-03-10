@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.TrainingSystem.Biz.attentioninfoMapper">
+  <resultMap id="BaseResultMap" type="com.TrainingSystem.Dto.attentioninfo">
+    <id column="attentioninfo_StudentGuid" jdbcType="VARCHAR" property="studentGuid" />
+    <result column="attentioninfo_Date_1" jdbcType="VARCHAR" property="date_1" />
+    <result column="attentioninfo_Date_2" jdbcType="VARCHAR" property="date_2" />
+    <result column="attentioninfo_Date_3" jdbcType="VARCHAR" property="date_3" />
+    <result column="attentioninfo_Date_4" jdbcType="VARCHAR" property="date_4" />
+    <result column="attentioninfo_Date_5" jdbcType="VARCHAR" property="date_5" />
+    <result column="attentioninfo_Date_6" jdbcType="VARCHAR" property="date_6" />
+    <result column="attentioninfo_Date_7" jdbcType="VARCHAR" property="date_7" />
+    <result column="attentioninfo_Date_8" jdbcType="VARCHAR" property="date_8" />
+    <result column="attentioninfo_Date_9" jdbcType="VARCHAR" property="date_9" />
+    <result column="attentioninfo_Date_10" jdbcType="VARCHAR" property="date_10" />
+    <result column="attentioninfo_Date_11" jdbcType="VARCHAR" property="date_11" />
+    <result column="attentioninfo_Date_12" jdbcType="VARCHAR" property="date_12" />
+    <result column="attentioninfo_Date_13" jdbcType="VARCHAR" property="date_13" />
+    <result column="attentioninfo_Date_14" jdbcType="VARCHAR" property="date_14" />
+    <result column="attentioninfo_Date_15" jdbcType="VARCHAR" property="date_15" />
+    <result column="attentioninfo_Date_16" jdbcType="VARCHAR" property="date_16" />
+    <result column="attentioninfo_Date_17" jdbcType="VARCHAR" property="date_17" />
+    <result column="attentioninfo_Date_18" jdbcType="VARCHAR" property="date_18" />
+    <result column="attentioninfo_Date_19" jdbcType="VARCHAR" property="date_19" />
+    <result column="attentioninfo_Date_20" jdbcType="VARCHAR" property="date_20" />
+    <result column="attentioninfo_Date_21" jdbcType="VARCHAR" property="date_21" />
+    <result column="attentioninfo_Date_22" jdbcType="VARCHAR" property="date_22" />
+    <result column="attentioninfo_Date_23" jdbcType="VARCHAR" property="date_23" />
+    <result column="attentioninfo_Date_24" jdbcType="VARCHAR" property="date_24" />
+    <result column="attentioninfo_Date_25" jdbcType="VARCHAR" property="date_25" />
+    <result column="attentioninfo_Date_26" jdbcType="VARCHAR" property="date_26" />
+    <result column="attentioninfo_Date_27" jdbcType="VARCHAR" property="date_27" />
+    <result column="attentioninfo_Date_28" jdbcType="VARCHAR" property="date_28" />
+    <result column="attentioninfo_Date_29" jdbcType="VARCHAR" property="date_29" />
+    <result column="attentioninfo_Date_30" jdbcType="VARCHAR" property="date_30" />
+    <result column="attentioninfo_Date_31" jdbcType="VARCHAR" property="date_31" />
+    <result column="attentioninfo_ShouldAttend" jdbcType="INTEGER" property="shouldAttend" />
+    <result column="attentioninfo_Leave" jdbcType="INTEGER" property="leave" />
+    <result column="attentioninfo_Absent" jdbcType="INTEGER" property="absent" />
+    <result column="attentioninfo_Late" jdbcType="INTEGER" property="late" />
+    <result column="attentioninfo_Early" jdbcType="INTEGER" property="early" />
+    <result column="attentioninfo_Attend" jdbcType="INTEGER" property="attend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    attentioninfo.StudentGuid as attentioninfo_StudentGuid, attentioninfo.Date_1 as attentioninfo_Date_1, 
+    attentioninfo.Date_2 as attentioninfo_Date_2, attentioninfo.Date_3 as attentioninfo_Date_3, 
+    attentioninfo.Date_4 as attentioninfo_Date_4, attentioninfo.Date_5 as attentioninfo_Date_5, 
+    attentioninfo.Date_6 as attentioninfo_Date_6, attentioninfo.Date_7 as attentioninfo_Date_7, 
+    attentioninfo.Date_8 as attentioninfo_Date_8, attentioninfo.Date_9 as attentioninfo_Date_9, 
+    attentioninfo.Date_10 as attentioninfo_Date_10, attentioninfo.Date_11 as attentioninfo_Date_11, 
+    attentioninfo.Date_12 as attentioninfo_Date_12, attentioninfo.Date_13 as attentioninfo_Date_13, 
+    attentioninfo.Date_14 as attentioninfo_Date_14, attentioninfo.Date_15 as attentioninfo_Date_15, 
+    attentioninfo.Date_16 as attentioninfo_Date_16, attentioninfo.Date_17 as attentioninfo_Date_17, 
+    attentioninfo.Date_18 as attentioninfo_Date_18, attentioninfo.Date_19 as attentioninfo_Date_19, 
+    attentioninfo.Date_20 as attentioninfo_Date_20, attentioninfo.Date_21 as attentioninfo_Date_21, 
+    attentioninfo.Date_22 as attentioninfo_Date_22, attentioninfo.Date_23 as attentioninfo_Date_23, 
+    attentioninfo.Date_24 as attentioninfo_Date_24, attentioninfo.Date_25 as attentioninfo_Date_25, 
+    attentioninfo.Date_26 as attentioninfo_Date_26, attentioninfo.Date_27 as attentioninfo_Date_27, 
+    attentioninfo.Date_28 as attentioninfo_Date_28, attentioninfo.Date_29 as attentioninfo_Date_29, 
+    attentioninfo.Date_30 as attentioninfo_Date_30, attentioninfo.Date_31 as attentioninfo_Date_31, 
+    attentioninfo.ShouldAttend as attentioninfo_ShouldAttend, attentioninfo.Leave as attentioninfo_Leave, 
+    attentioninfo.Absent as attentioninfo_Absent, attentioninfo.Late as attentioninfo_Late, 
+    attentioninfo.Early as attentioninfo_Early, attentioninfo.Attend as attentioninfo_Attend
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attentioninfo attentioninfo
+    where attentioninfo.StudentGuid = #{studentGuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from attentioninfo
+    where StudentGuid = #{studentGuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.TrainingSystem.Dto.attentioninfo">
+    insert into attentioninfo (StudentGuid, Date_1, Date_2, 
+      Date_3, Date_4, Date_5, 
+      Date_6, Date_7, Date_8, 
+      Date_9, Date_10, Date_11, 
+      Date_12, Date_13, Date_14, 
+      Date_15, Date_16, Date_17, 
+      Date_18, Date_19, Date_20, 
+      Date_21, Date_22, Date_23, 
+      Date_24, Date_25, Date_26, 
+      Date_27, Date_28, Date_29, 
+      Date_30, Date_31, ShouldAttend, 
+      Leave, Absent, Late, 
+      Early, Attend)
+    values (#{studentGuid,jdbcType=VARCHAR}, #{date_1,jdbcType=VARCHAR}, #{date_2,jdbcType=VARCHAR}, 
+      #{date_3,jdbcType=VARCHAR}, #{date_4,jdbcType=VARCHAR}, #{date_5,jdbcType=VARCHAR}, 
+      #{date_6,jdbcType=VARCHAR}, #{date_7,jdbcType=VARCHAR}, #{date_8,jdbcType=VARCHAR}, 
+      #{date_9,jdbcType=VARCHAR}, #{date_10,jdbcType=VARCHAR}, #{date_11,jdbcType=VARCHAR}, 
+      #{date_12,jdbcType=VARCHAR}, #{date_13,jdbcType=VARCHAR}, #{date_14,jdbcType=VARCHAR}, 
+      #{date_15,jdbcType=VARCHAR}, #{date_16,jdbcType=VARCHAR}, #{date_17,jdbcType=VARCHAR}, 
+      #{date_18,jdbcType=VARCHAR}, #{date_19,jdbcType=VARCHAR}, #{date_20,jdbcType=VARCHAR}, 
+      #{date_21,jdbcType=VARCHAR}, #{date_22,jdbcType=VARCHAR}, #{date_23,jdbcType=VARCHAR}, 
+      #{date_24,jdbcType=VARCHAR}, #{date_25,jdbcType=VARCHAR}, #{date_26,jdbcType=VARCHAR}, 
+      #{date_27,jdbcType=VARCHAR}, #{date_28,jdbcType=VARCHAR}, #{date_29,jdbcType=VARCHAR}, 
+      #{date_30,jdbcType=VARCHAR}, #{date_31,jdbcType=VARCHAR}, #{shouldAttend,jdbcType=INTEGER}, 
+      #{leave,jdbcType=INTEGER}, #{absent,jdbcType=INTEGER}, #{late,jdbcType=INTEGER}, 
+      #{early,jdbcType=INTEGER}, #{attend,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.TrainingSystem.Dto.attentioninfo">
+    insert into attentioninfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentGuid != null">
+        StudentGuid,
+      </if>
+      <if test="date_1 != null">
+        Date_1,
+      </if>
+      <if test="date_2 != null">
+        Date_2,
+      </if>
+      <if test="date_3 != null">
+        Date_3,
+      </if>
+      <if test="date_4 != null">
+        Date_4,
+      </if>
+      <if test="date_5 != null">
+        Date_5,
+      </if>
+      <if test="date_6 != null">
+        Date_6,
+      </if>
+      <if test="date_7 != null">
+        Date_7,
+      </if>
+      <if test="date_8 != null">
+        Date_8,
+      </if>
+      <if test="date_9 != null">
+        Date_9,
+      </if>
+      <if test="date_10 != null">
+        Date_10,
+      </if>
+      <if test="date_11 != null">
+        Date_11,
+      </if>
+      <if test="date_12 != null">
+        Date_12,
+      </if>
+      <if test="date_13 != null">
+        Date_13,
+      </if>
+      <if test="date_14 != null">
+        Date_14,
+      </if>
+      <if test="date_15 != null">
+        Date_15,
+      </if>
+      <if test="date_16 != null">
+        Date_16,
+      </if>
+      <if test="date_17 != null">
+        Date_17,
+      </if>
+      <if test="date_18 != null">
+        Date_18,
+      </if>
+      <if test="date_19 != null">
+        Date_19,
+      </if>
+      <if test="date_20 != null">
+        Date_20,
+      </if>
+      <if test="date_21 != null">
+        Date_21,
+      </if>
+      <if test="date_22 != null">
+        Date_22,
+      </if>
+      <if test="date_23 != null">
+        Date_23,
+      </if>
+      <if test="date_24 != null">
+        Date_24,
+      </if>
+      <if test="date_25 != null">
+        Date_25,
+      </if>
+      <if test="date_26 != null">
+        Date_26,
+      </if>
+      <if test="date_27 != null">
+        Date_27,
+      </if>
+      <if test="date_28 != null">
+        Date_28,
+      </if>
+      <if test="date_29 != null">
+        Date_29,
+      </if>
+      <if test="date_30 != null">
+        Date_30,
+      </if>
+      <if test="date_31 != null">
+        Date_31,
+      </if>
+      <if test="shouldAttend != null">
+        ShouldAttend,
+      </if>
+      <if test="leave != null">
+        Leave,
+      </if>
+      <if test="absent != null">
+        Absent,
+      </if>
+      <if test="late != null">
+        Late,
+      </if>
+      <if test="early != null">
+        Early,
+      </if>
+      <if test="attend != null">
+        Attend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentGuid != null">
+        #{studentGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="date_1 != null">
+        #{date_1,jdbcType=VARCHAR},
+      </if>
+      <if test="date_2 != null">
+        #{date_2,jdbcType=VARCHAR},
+      </if>
+      <if test="date_3 != null">
+        #{date_3,jdbcType=VARCHAR},
+      </if>
+      <if test="date_4 != null">
+        #{date_4,jdbcType=VARCHAR},
+      </if>
+      <if test="date_5 != null">
+        #{date_5,jdbcType=VARCHAR},
+      </if>
+      <if test="date_6 != null">
+        #{date_6,jdbcType=VARCHAR},
+      </if>
+      <if test="date_7 != null">
+        #{date_7,jdbcType=VARCHAR},
+      </if>
+      <if test="date_8 != null">
+        #{date_8,jdbcType=VARCHAR},
+      </if>
+      <if test="date_9 != null">
+        #{date_9,jdbcType=VARCHAR},
+      </if>
+      <if test="date_10 != null">
+        #{date_10,jdbcType=VARCHAR},
+      </if>
+      <if test="date_11 != null">
+        #{date_11,jdbcType=VARCHAR},
+      </if>
+      <if test="date_12 != null">
+        #{date_12,jdbcType=VARCHAR},
+      </if>
+      <if test="date_13 != null">
+        #{date_13,jdbcType=VARCHAR},
+      </if>
+      <if test="date_14 != null">
+        #{date_14,jdbcType=VARCHAR},
+      </if>
+      <if test="date_15 != null">
+        #{date_15,jdbcType=VARCHAR},
+      </if>
+      <if test="date_16 != null">
+        #{date_16,jdbcType=VARCHAR},
+      </if>
+      <if test="date_17 != null">
+        #{date_17,jdbcType=VARCHAR},
+      </if>
+      <if test="date_18 != null">
+        #{date_18,jdbcType=VARCHAR},
+      </if>
+      <if test="date_19 != null">
+        #{date_19,jdbcType=VARCHAR},
+      </if>
+      <if test="date_20 != null">
+        #{date_20,jdbcType=VARCHAR},
+      </if>
+      <if test="date_21 != null">
+        #{date_21,jdbcType=VARCHAR},
+      </if>
+      <if test="date_22 != null">
+        #{date_22,jdbcType=VARCHAR},
+      </if>
+      <if test="date_23 != null">
+        #{date_23,jdbcType=VARCHAR},
+      </if>
+      <if test="date_24 != null">
+        #{date_24,jdbcType=VARCHAR},
+      </if>
+      <if test="date_25 != null">
+        #{date_25,jdbcType=VARCHAR},
+      </if>
+      <if test="date_26 != null">
+        #{date_26,jdbcType=VARCHAR},
+      </if>
+      <if test="date_27 != null">
+        #{date_27,jdbcType=VARCHAR},
+      </if>
+      <if test="date_28 != null">
+        #{date_28,jdbcType=VARCHAR},
+      </if>
+      <if test="date_29 != null">
+        #{date_29,jdbcType=VARCHAR},
+      </if>
+      <if test="date_30 != null">
+        #{date_30,jdbcType=VARCHAR},
+      </if>
+      <if test="date_31 != null">
+        #{date_31,jdbcType=VARCHAR},
+      </if>
+      <if test="shouldAttend != null">
+        #{shouldAttend,jdbcType=INTEGER},
+      </if>
+      <if test="leave != null">
+        #{leave,jdbcType=INTEGER},
+      </if>
+      <if test="absent != null">
+        #{absent,jdbcType=INTEGER},
+      </if>
+      <if test="late != null">
+        #{late,jdbcType=INTEGER},
+      </if>
+      <if test="early != null">
+        #{early,jdbcType=INTEGER},
+      </if>
+      <if test="attend != null">
+        #{attend,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.TrainingSystem.Dto.attentioninfo">
+    update attentioninfo
+    <set>
+      <if test="date_1 != null">
+        Date_1 = #{date_1,jdbcType=VARCHAR},
+      </if>
+      <if test="date_2 != null">
+        Date_2 = #{date_2,jdbcType=VARCHAR},
+      </if>
+      <if test="date_3 != null">
+        Date_3 = #{date_3,jdbcType=VARCHAR},
+      </if>
+      <if test="date_4 != null">
+        Date_4 = #{date_4,jdbcType=VARCHAR},
+      </if>
+      <if test="date_5 != null">
+        Date_5 = #{date_5,jdbcType=VARCHAR},
+      </if>
+      <if test="date_6 != null">
+        Date_6 = #{date_6,jdbcType=VARCHAR},
+      </if>
+      <if test="date_7 != null">
+        Date_7 = #{date_7,jdbcType=VARCHAR},
+      </if>
+      <if test="date_8 != null">
+        Date_8 = #{date_8,jdbcType=VARCHAR},
+      </if>
+      <if test="date_9 != null">
+        Date_9 = #{date_9,jdbcType=VARCHAR},
+      </if>
+      <if test="date_10 != null">
+        Date_10 = #{date_10,jdbcType=VARCHAR},
+      </if>
+      <if test="date_11 != null">
+        Date_11 = #{date_11,jdbcType=VARCHAR},
+      </if>
+      <if test="date_12 != null">
+        Date_12 = #{date_12,jdbcType=VARCHAR},
+      </if>
+      <if test="date_13 != null">
+        Date_13 = #{date_13,jdbcType=VARCHAR},
+      </if>
+      <if test="date_14 != null">
+        Date_14 = #{date_14,jdbcType=VARCHAR},
+      </if>
+      <if test="date_15 != null">
+        Date_15 = #{date_15,jdbcType=VARCHAR},
+      </if>
+      <if test="date_16 != null">
+        Date_16 = #{date_16,jdbcType=VARCHAR},
+      </if>
+      <if test="date_17 != null">
+        Date_17 = #{date_17,jdbcType=VARCHAR},
+      </if>
+      <if test="date_18 != null">
+        Date_18 = #{date_18,jdbcType=VARCHAR},
+      </if>
+      <if test="date_19 != null">
+        Date_19 = #{date_19,jdbcType=VARCHAR},
+      </if>
+      <if test="date_20 != null">
+        Date_20 = #{date_20,jdbcType=VARCHAR},
+      </if>
+      <if test="date_21 != null">
+        Date_21 = #{date_21,jdbcType=VARCHAR},
+      </if>
+      <if test="date_22 != null">
+        Date_22 = #{date_22,jdbcType=VARCHAR},
+      </if>
+      <if test="date_23 != null">
+        Date_23 = #{date_23,jdbcType=VARCHAR},
+      </if>
+      <if test="date_24 != null">
+        Date_24 = #{date_24,jdbcType=VARCHAR},
+      </if>
+      <if test="date_25 != null">
+        Date_25 = #{date_25,jdbcType=VARCHAR},
+      </if>
+      <if test="date_26 != null">
+        Date_26 = #{date_26,jdbcType=VARCHAR},
+      </if>
+      <if test="date_27 != null">
+        Date_27 = #{date_27,jdbcType=VARCHAR},
+      </if>
+      <if test="date_28 != null">
+        Date_28 = #{date_28,jdbcType=VARCHAR},
+      </if>
+      <if test="date_29 != null">
+        Date_29 = #{date_29,jdbcType=VARCHAR},
+      </if>
+      <if test="date_30 != null">
+        Date_30 = #{date_30,jdbcType=VARCHAR},
+      </if>
+      <if test="date_31 != null">
+        Date_31 = #{date_31,jdbcType=VARCHAR},
+      </if>
+      <if test="shouldAttend != null">
+        ShouldAttend = #{shouldAttend,jdbcType=INTEGER},
+      </if>
+      <if test="leave != null">
+        Leave = #{leave,jdbcType=INTEGER},
+      </if>
+      <if test="absent != null">
+        Absent = #{absent,jdbcType=INTEGER},
+      </if>
+      <if test="late != null">
+        Late = #{late,jdbcType=INTEGER},
+      </if>
+      <if test="early != null">
+        Early = #{early,jdbcType=INTEGER},
+      </if>
+      <if test="attend != null">
+        Attend = #{attend,jdbcType=INTEGER},
+      </if>
+    </set>
+    where StudentGuid = #{studentGuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.TrainingSystem.Dto.attentioninfo">
+    update attentioninfo
+    set Date_1 = #{date_1,jdbcType=VARCHAR},
+      Date_2 = #{date_2,jdbcType=VARCHAR},
+      Date_3 = #{date_3,jdbcType=VARCHAR},
+      Date_4 = #{date_4,jdbcType=VARCHAR},
+      Date_5 = #{date_5,jdbcType=VARCHAR},
+      Date_6 = #{date_6,jdbcType=VARCHAR},
+      Date_7 = #{date_7,jdbcType=VARCHAR},
+      Date_8 = #{date_8,jdbcType=VARCHAR},
+      Date_9 = #{date_9,jdbcType=VARCHAR},
+      Date_10 = #{date_10,jdbcType=VARCHAR},
+      Date_11 = #{date_11,jdbcType=VARCHAR},
+      Date_12 = #{date_12,jdbcType=VARCHAR},
+      Date_13 = #{date_13,jdbcType=VARCHAR},
+      Date_14 = #{date_14,jdbcType=VARCHAR},
+      Date_15 = #{date_15,jdbcType=VARCHAR},
+      Date_16 = #{date_16,jdbcType=VARCHAR},
+      Date_17 = #{date_17,jdbcType=VARCHAR},
+      Date_18 = #{date_18,jdbcType=VARCHAR},
+      Date_19 = #{date_19,jdbcType=VARCHAR},
+      Date_20 = #{date_20,jdbcType=VARCHAR},
+      Date_21 = #{date_21,jdbcType=VARCHAR},
+      Date_22 = #{date_22,jdbcType=VARCHAR},
+      Date_23 = #{date_23,jdbcType=VARCHAR},
+      Date_24 = #{date_24,jdbcType=VARCHAR},
+      Date_25 = #{date_25,jdbcType=VARCHAR},
+      Date_26 = #{date_26,jdbcType=VARCHAR},
+      Date_27 = #{date_27,jdbcType=VARCHAR},
+      Date_28 = #{date_28,jdbcType=VARCHAR},
+      Date_29 = #{date_29,jdbcType=VARCHAR},
+      Date_30 = #{date_30,jdbcType=VARCHAR},
+      Date_31 = #{date_31,jdbcType=VARCHAR},
+      ShouldAttend = #{shouldAttend,jdbcType=INTEGER},
+      Leave = #{leave,jdbcType=INTEGER},
+      Absent = #{absent,jdbcType=INTEGER},
+      Late = #{late,jdbcType=INTEGER},
+      Early = #{early,jdbcType=INTEGER},
+      Attend = #{attend,jdbcType=INTEGER}
+    where StudentGuid = #{studentGuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
